@@ -1,14 +1,17 @@
 
-from random import randrange
+from random import randrange,randint
 
 
 def key_gen(l):
+
     k=randrange(2**l,2**(l+1))
     return k
 
 
 def enc(k, m):
-    r=randrange(k**0.75,k-k**0.75)
+    p=round(k**0.75)
+    r=randrange(p,k-p)
+
     c=m*k+r
     return c
 
