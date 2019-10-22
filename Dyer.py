@@ -1,5 +1,5 @@
 
-from random import randrange,randint
+from random import randrange
 
 
 def key_gen(l):
