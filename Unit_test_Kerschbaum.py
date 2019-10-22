@@ -2,7 +2,7 @@ import unittest
 
 
 
-from Kerschbaum import calc_max,  n, T, encrypt, reencrypt
+from Kerschbaum import calc_max,  n, T, encrypt, decrypt
 
 
 class SimpleTestCase(unittest.TestCase):
@@ -11,9 +11,9 @@ class SimpleTestCase(unittest.TestCase):
     max=calc_max(10)
 
     def testConsistency(self):
-        x='sunil'
+        x=85785
         c = encrypt(x,'gary',6,max)
-        d = reencrypt(None,x,-1,calc_max(10))
+        d = decrypt(c,T.t)
         assert d ==x
 
 
