@@ -52,10 +52,9 @@ def get_all_plaintexts(l, t):
 
 
 def calc_max(l):
-
+    global n
     r = l * math.log(2, n)
-    m=2**r
-    return m
+    return 2**r
 
 def encrypt(x, t, min, max):
     global MAX
@@ -92,20 +91,29 @@ def rebalance(x, min, max):
 
 
 def reencrypt(t, X, min, max):
+    if len(X) == 0:
+        return
     medianXidx = math.ceil(len(X)/2.0)
     X1 = X[0:medianXidx-1]
     X2 = X[medianXidx+1:]
-    medianX1 = X[math.ceil(len(X1)/2.0)]
-    medianX2 = X[math.ceil(len(X2)/2.0)]
-    encrypt(medianX1, t, min, max)
-    encrypt(medianX2, t, min, max)
-    reencrypt(t, X1, min, max)
-    reencrypt(t, X2, min, max)
+    if len(X1) > 0:
+        medianX1 = X[math.ceil(len(X1)/2.0)]
+        encrypt(medianX1, t, min, max)
+    if len(X2) > 0:
+        medianX2 = X[math.ceil(len(X2)/2.0)]
+        encrypt(medianX2, t, min, max)
+    if len(X1) > 1:
+        reencrypt(t, X1, min, max)
+    if len(X2) > 1:
+        reencrypt(t, X2, min, max)
+    return
 
-def decrypt(median,t):
-    if median>t.cipher:
-        return decrypt(median,t.right)
-    elif median<t.cipher:
-        return decrypt(median.t.left)
+
+
+def decrypt(cipher,t):
+    if cipher>t.cipher:
+        return decrypt(cipher,t.right)
+    elif cipher<t.cipher:
+        return decrypt(cipher.t.left)
     else :
         return t.plain
