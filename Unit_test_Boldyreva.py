@@ -6,14 +6,14 @@ from Boldyreva import *
 
 
 class SimpleTestCase(unittest.TestCase):
-    OCC=OPE.__new__(object)
+    OPE=OPE.NEW()
 
-    #OPE.generate_key(32)
+    OPE.generate_key(32)
 
     def testConsistency(self,):
         plaintext=4916684
-        c =OCC.encrypt(plaintext)
-        d = object.decrypt(c)
+        c =OPE.encrypt(plaintext)
+        d = OPE.decrypt(c)
         assert d == plaintext
 
 
