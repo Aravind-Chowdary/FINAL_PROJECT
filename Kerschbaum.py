@@ -53,7 +53,8 @@ def get_all_plaintexts(l, t):
 
 def calc_max(l):
     global n
-    r = l * math.log(2, n)
+
+    r = l * math.log2(n)
     return 2**r
 
 def encrypt(x, t, min, max):
