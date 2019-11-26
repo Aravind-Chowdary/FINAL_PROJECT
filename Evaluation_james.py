@@ -15,4 +15,17 @@ while i<num:
     total +=end-start
     print ("Time taken for the encryption:", total)
 
+j=0
+taken=0
+eum=10000
+while i<eum:
+    m=randrange(10000)
+    begin=time.time()
+    c=enc(k,m)
+    dec(k, c)
+    close=time.time()
+    taken += close-begin
+    print ("Time taken for both encryption:", taken)
+
+
 
