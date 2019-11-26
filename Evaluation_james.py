@@ -13,7 +13,8 @@ while i<num:
     enc(k,m)
     end=time.time()
     total +=end-start
-    print ("Time taken for the encryption:", total)
+
+print ("Time taken for the encryption:", float(total)/float(num))
 
 j=0
 taken=0
