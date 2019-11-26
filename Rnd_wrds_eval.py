@@ -1,5 +1,5 @@
 from random import randrange
-f = open("guru99.txt", "w+")
+f = open("rands.txt", "w+")
 num=100000
 i=0
 while i<num:
