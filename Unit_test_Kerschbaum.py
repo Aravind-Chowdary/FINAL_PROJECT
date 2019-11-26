@@ -1,18 +1,19 @@
 import unittest
 
-from Kerschbaum import  n, T, encrypt, decrypt
+from Kerschbaum import *
+Kersch=Kersch()
 
 
 class SimpleTestCase(unittest.TestCase):
-    n==16
-    T=={}
-    from Kerschbaum import calc_max
-    max=calc_max(10)
+    Kersch.n==16
+    Kersch.T=={}
+
+    max=Kersch.calc_max(10)
 
     def testConsistency(self):
         x=85785
-        c = encrypt(x,T,-1,max)
-        d = decrypt(c,T)
+        c = Kersch.encrypt(x,Kersch.T,-1,max)
+        d = Kersch.decrypt(c,Kersch.T)
         assert d ==x
 
 
