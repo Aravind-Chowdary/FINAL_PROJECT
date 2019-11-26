@@ -1,11 +1,11 @@
 import Crypto.Random
 import math
 
+
 class Kersch:
     MAX = None
     n = None
     T = None
-
 
     class Tree:
         left = None
@@ -18,7 +18,6 @@ class Kersch:
             self.right = None
             self.plain = plain
             self.cipher = cipher
-
 
     def get(self, t, plain):
         if t.plain == plain:
@@ -42,7 +41,6 @@ class Kersch:
                 return r
             return None
 
-
     def get_all_plaintexts(self, l, t):
         l.append(t.plain)
         if t.left is not None:
@@ -57,7 +55,6 @@ class Kersch:
         r = l * n
         return 2**r
 
-
     def encrypt(self, x, t, min, max):
         global MAX
         if x == t.plain:
@@ -69,7 +66,7 @@ class Kersch:
                 return self.encrypt(x, t.right, t.cipher, max)
             else:
                 if max - t.plain < 2:
-                    return self.rebalance(x, -1, n)
+                    return self.rebalance(x, -1, self.n)
                 t.right = self.Tree.new(x, t.cipher + math.ceil((max - t.cipher)/2.0))
                 return t.right.cipher
         if x < t.plain or coin == 0:
@@ -108,8 +105,6 @@ class Kersch:
         if len(X2) > 1:
             self.reencrypt(t, X2, min, max)
         return
-
-
 
     def decrypt(self, cipher,t):
         if cipher>t.cipher:
