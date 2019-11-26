@@ -14,3 +14,4 @@ while i<num:
     chen.ore_enc(k,m)
     end=time.time()
     total +=end-begin
+print ("Time taken for the encryption:", float(total)/float(num))
