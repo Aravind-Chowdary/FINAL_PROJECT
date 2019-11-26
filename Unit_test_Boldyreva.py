@@ -1,14 +1,12 @@
 import unittest
 
-
-
 from Boldyreva import *
 
 
 class SimpleTestCase(unittest.TestCase):
-    OPE=OPE.NEW()
+    key = OPE.generate_key(32)
+    OPE=OPE(key, in_range=ValueRange(1,2**16-1) , out_range=ValueRange(1,2**31-1))
 
-    OPE.generate_key(32)
 
     def testConsistency(self,):
         plaintext=4916684
