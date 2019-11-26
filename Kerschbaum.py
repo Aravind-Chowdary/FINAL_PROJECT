@@ -52,8 +52,8 @@ class Kersch:
         return l
 
     def calc_max(self, l):
-        global n
 
+        n=self.n
         r = l * n
         return 2**r
 
@@ -90,7 +90,6 @@ class Kersch:
         self.reencrypt(t, X, min, max)
         T = t
         return self.get(t, x).cipher
-
 
     def reencrypt(self, t, X, min, max):
         if len(X) == 0:
