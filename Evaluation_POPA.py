@@ -7,15 +7,15 @@ key=key_gen()
 iv=init_vect()
 
 i=0
-total=0
+taken_enc=0
 num=10000
 while i<num:
     data=random.getrandbits(16)
     start=time.time()
     enc(key, iv, data)
     end=time.time()
-    total +=end-start
-print("TIme for Encryption", total)
+    taken_enc +=end-start
+print("TIme for Encryption", taken_enc)
 
 j=0
 taken=0
