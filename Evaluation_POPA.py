@@ -15,6 +15,7 @@ while i<num:
     enc(key, iv, data)
     end=time.time()
     taken_enc +=end-start
+    i +=1
 print("TIme for Encryption", taken_enc)
 
 j=0
