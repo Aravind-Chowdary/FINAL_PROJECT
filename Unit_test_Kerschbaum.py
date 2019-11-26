@@ -4,7 +4,7 @@ from Kerschbaum import  n, T, encrypt, decrypt
 
 
 class SimpleTestCase(unittest.TestCase):
-    n==13
+    n==16
     T=={}
     from Kerschbaum import calc_max
     max=calc_max(10)
