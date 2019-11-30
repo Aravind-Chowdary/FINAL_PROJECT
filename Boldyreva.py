@@ -114,7 +114,8 @@ class OPE(object):
         assert in_size <= out_size
         if in_range.size() == 1:
             coins = self.tape_gen(plaintext)
-            ciphertext = stat.sample_uniform(out_range, coins)
+            cpt = stat.sample_uniform(out_range, coins)
+            ciphertext = int(cpt)
             return ciphertext
         coins = self.tape_gen(mid)
         x = stat.sample_hgd(in_range, out_range, mid, coins)
