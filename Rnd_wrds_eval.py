@@ -1,6 +1,6 @@
 from random import randrange
 f = open("rands.txt", "w+")
-num=100000
+num=10000
 i=0
 while i<num:
     m=randrange(0,65536)
