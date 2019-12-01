@@ -1,24 +1,26 @@
-from Crypto.Random import random
+from Crypto import Random
 from Crypto.Hash import HMAC,SHA256
 
+
 class chen:
-    h=None
-    k=None
+    h = None
+    k = None
+
     def __init__(self):
         self.k=self.key_gen()
         self.h=HMAC.new(self.k,digestmod=SHA256)
 
     def key_gen(self):
-        k=random.get_random_bytes(64)
+        k=Random.get_random_bytes(64)
         return k
 
     def prf(self, m):
         self.h.update(m)
         return int(self.h.digest())
 
-    def ore_enc(self, k, m):
+    def ore_enc(self,  m):
         ab = ""
-        ct1 =()
+        ct1 = ()
         for i in m:
             ab += i
             ct1 += str((self.prf(ab[:-1]) + int(ab[-1])) % 3)
