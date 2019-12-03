@@ -55,7 +55,7 @@ class Kersch:
         r = l * n
         return 2**r
 
-    def encrypt(self, x, t, min, max):
+    def recursive_encryption(self, x, t, min, max):
         global MAX
         if x == t.plain:
             coin = Crypto.Random.random.randint(0, 1)
@@ -77,7 +77,9 @@ class Kersch:
                     return self.rebalance(x, -1, MAX)
                 t.left = self.Tree.new(x, min + math.ceil((t.cipher - min)/2.0))
                 return t.left.cipher
+    def enc(self, x):
 
+    def dec(self, y):
     def rebalance(self, x, min, max):
         global T
         X = self.get_all_plaintexts(T).append(x)
@@ -96,20 +98,20 @@ class Kersch:
         X2 = X[medianXidx+1:]
         if len(X1) > 0:
             medianX1 = X[math.ceil(len(X1)/2.0)]
-            self.encrypt(medianX1, t, min, max)
+            self.recursive_encryption(medianX1, t, min, max)
         if len(X2) > 0:
             medianX2 = X[math.ceil(len(X2)/2.0)]
-            self.encrypt(medianX2, t, min, max)
+            self.recursive_encryption(medianX2, t, min, max)
         if len(X1) > 1:
             self.reencrypt(t, X1, min, max)
         if len(X2) > 1:
             self.reencrypt(t, X2, min, max)
         return
 
-    def decrypt(self, cipher,t):
+    def recursive_decrypt(self, cipher,t):
         if cipher>t.cipher:
-            return self.decrypt(cipher,t.right)
+            return self.recursive_decrypt(cipher,t.right)
         elif cipher<t.cipher:
-            return self.decrypt(cipher.t.left)
+            return self.recursive_decrypt(cipher.t.left)
         else :
             return t.plain
