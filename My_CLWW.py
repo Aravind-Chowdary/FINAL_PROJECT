@@ -16,14 +16,15 @@ class chen:
 
     def prf(self, m):
         self.h.update(m)
-        return int(self.h.digest())
+        td=self.h.digest()
+        return td
 
     def ore_enc(self,  m):
         ab = ""
         ct1 = ()
-        for i in m:
+        for i in str(m):
             ab += i
-            ct1 += str((self.prf(ab[:-1]) + int(ab[-1])) % 3)
+            ct1 += str(((self.prf(ab[:-1])) + ((ab[-1]) % 3)))
         return ct1
 
     def ore_compare(self, ct1, ct2):
