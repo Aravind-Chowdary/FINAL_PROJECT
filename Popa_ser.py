@@ -1,11 +1,11 @@
 
-from Popa_cli import pop_cli
+
 import sqlite3
 
 
 class OPETree:
     # __ denotes private class member or method
-    pop_cli=pop_cli()
+
     def __init__(self):
         pass
 
@@ -17,7 +17,9 @@ class OPETree:
         self.__key = key
 
     def insert_in_tree(self, enc_val, iv):
-        val = self.pop_cli.dec(self.__key,enc_val,iv)
+        from Popa_cli import pop_cli
+
+        val = pop_cli.dec(self.__key,enc_val,iv)
         if self.tree is None:
             self.__tree = Tree.new(val)
             path = ""
