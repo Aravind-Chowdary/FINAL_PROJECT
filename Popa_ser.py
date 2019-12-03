@@ -1,10 +1,11 @@
 
-from Popa_cli import dec
+from Popa_cli import pop_cli
 import sqlite3
 
 
 class OPETree:
     # __ denotes private class member or method
+    pop_cli=pop_cli()
     def __init__(self):
         pass
 
@@ -16,17 +17,16 @@ class OPETree:
         self.__key = key
 
     def insert_in_tree(self, enc_val, iv):
-        val = dec(self.__key,enc_val,iv)
+        val = self.pop_cli.dec(self.__key,enc_val,iv)
         if self.tree is None:
             self.__tree = Tree.new(val)
             path = ""
             self.__insert_path_in_table(enc_val, path)
         else:
-            path = self.__tree.insert(val, "") #Note: we initially set path as empty
+            path = self.__tree.insert(val, "")
             self.__insert_path_in_table(enc_val, path)
 
-
-    def __insert_path_in_table(self, enc_val, path): #Add encrypted value and path to table
+    def __insert_path_in_table(self, enc_val, path):
 
         conn = sqlite3.connect('testdb2.sqlite')
 
@@ -49,7 +49,7 @@ class OPETree:
         conn.commit()
         conn.close()
 
-    def lookup_path(self, enc_val):
+    def lookup_path(self):
         conn = sqlite3.connect('testdb2.sqlite')
 
         cursor = conn.cursor()
