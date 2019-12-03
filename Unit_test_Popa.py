@@ -8,7 +8,6 @@ class SimpleTestCase(unittest.TestCase):
     pop_cli=pop_cli()
     key = pop_cli.key_gen()
     iv= pop_cli.init_vect()
-    OPETree=OPETree.new()
     letters = string.ascii_lowercase
     m = ''.join(random.choice(letters) for i in range(10))
 
