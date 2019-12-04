@@ -7,6 +7,10 @@ class Kersch:
     n = None
     T = None
 
+    def __init__(self, l, n):
+        self.n = n
+        self.MAX= self.calc_max(l)
+
     class Tree:
         left = None
         right = None
@@ -18,7 +22,6 @@ class Kersch:
             self.right = None
             self.plain = plain
             self.cipher = cipher
-
     def get(self, t, plain):
         if t.plain == plain:
             return t
@@ -77,9 +80,21 @@ class Kersch:
                     return self.rebalance(x, -1, MAX)
                 t.left = self.Tree.new(x, min + math.ceil((t.cipher - min)/2.0))
                 return t.left.cipher
+
     def enc(self, x):
+        if self.T is None:
+            self.T = self.Tree(x, math.ceil((self.MAX+1)/2.0))
+            return self.T.cipher
+        else:
+            return  self.recursive_encryption(x,self.T,-1 , self.MAX)
 
     def dec(self, y):
+
+        if self.T is None:
+            return None
+        else:
+            return  self.recursive_decrypt(y, self.T)
+
     def rebalance(self, x, min, max):
         global T
         X = self.get_all_plaintexts(T).append(x)
@@ -110,8 +125,8 @@ class Kersch:
 
     def recursive_decrypt(self, cipher,t):
         if cipher>t.cipher:
-            return self.recursive_decrypt(cipher,t.right)
+            return self.recursive_decrypt(cipher, t.right)
         elif cipher<t.cipher:
-            return self.recursive_decrypt(cipher.t.left)
+            return self.recursive_decrypt(cipher, t.left)
         else :
             return t.plain
