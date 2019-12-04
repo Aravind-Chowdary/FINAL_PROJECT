@@ -13,7 +13,6 @@ while i < num:
     m=int(w)
     start = time.time()
     d=enc(k, m)
-
     end = time.time()
     total += end-start
     i += 1
