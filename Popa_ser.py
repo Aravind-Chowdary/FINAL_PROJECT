@@ -16,19 +16,19 @@ class OPETree:
     def set_key(self, key):
         self.__key = key
 
-    def insert_in_tree(self, enc_val, iv):
+    def insert_in_tree(self, encd, iv):
         from Popa_cli import pop_cli
 
-        val = pop_cli.dec(self.__key,enc_val,iv)
+        val = pop_cli.dec(self.__key,encd,iv)
         if self.tree is None:
             self.__tree = Tree.new(val)
             path = ""
-            self.__insert_path_in_table(enc_val, path)
+            self.__insert_path_in_table(encd, path)
         else:
             path = self.__tree.insert(val, "")
-            self.__insert_path_in_table(enc_val, path)
+            self.__insert_path_in_table(encd, path)
 
-    def __insert_path_in_table(self, enc_val, path):
+    def __insert_path_in_table(self, encd, path):
 
         conn = sqlite3.connect('testdb2.sqlite')
 
