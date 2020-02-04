@@ -1,21 +1,20 @@
-from My_CLWW import *
+from CLWW import *
 
 
 import time
 
-i = 0
-k = key_gen(48)
-total = 0
+cnt = 0
 num = 10000
-f = open('rands.txt', 'r')
+i=0
+total=0
+passwd = rnd_word(10)
 while i < num:
-    w = f.readline()
-    m=int(w)
+    num1 = random.randrange(2**63, 2**64)
+    num2 = random.randrange(2**63, 2**64)
     start = time.time()
-    d=enc(k, m)
-
+    a = ore_enc(bin(num1)[2:], passwd)
+    b = ore_enc(bin(num2)[2:], passwd)
     end = time.time()
     total += end-start
     i += 1
-print ("Time taken for the encryption:", float(total)/float(num))
-f.close()
+print ("Time taken for the encryption:", float(total) / float(num))
